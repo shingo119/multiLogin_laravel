@@ -9,19 +9,31 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
+                    @if(auth('admin')->user())
+                        @include('profile.partials.update-admin-profile-information-form')
+                    @elseif(auth('users')->user())
+                        @include('profile.partials.update-profile-information-form')
+                    @endif
                 </div>
             </div>
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
+                    @if(auth('admin')->user())
+                        @include('profile.partials.update-admin-password-form')
+                    @elseif(auth('users')->user())
+                        @include('profile.partials.update-password-form')
+                    @endif
                 </div>
             </div>
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
+                    @if(auth('admin')->user())
+                        @include('profile.partials.delete-admin-form')
+                    @elseif(auth('users')->user())
+                        @include('profile.partials.delete-user-form')
+                    @endif
                 </div>
             </div>
         </div>
